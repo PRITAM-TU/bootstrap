@@ -42,33 +42,34 @@
         <div class="result" id="result"></div>
     </div>
 
-    <script>
-        async function getWeather() {
-            const location = document.getElementById('location').value;
-            const resultDiv = document.getElementById('result');
-
-            if (!location) {
-                resultDiv.innerHTML = "Please enter a location.";
-                return;
-            }
-
-            const apiKey = "cb6538f8a8fc4df1be492634250201";  // Example key
-            const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=yes`;
-
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-
-                if (data.error) {
-                    resultDiv.innerHTML = "Location not found. Try again.";
-                } else {
-                    const temperature = data.current.temp_c;
-                    resultDiv.innerHTML = `Temperature in ${location}: ${temperature}&#8451;`;
-                }
-            } catch (error) {
-                resultDiv.innerHTML = "Error fetching weather data. Please try again later.";
-            }
-        }
-    </script>
+    
 </body>
+<script>
+    async function getWeather() {
+        const location = document.getElementById('location').value;
+        const resultDiv = document.getElementById('result');
+
+        if (!location) {
+            resultDiv.innerHTML = "Please enter a location.";
+            return;
+        }
+
+        const apiKey = "cb6538f8a8fc4df1be492634250201";  // Example key
+        const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=yes`;
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (data.error) {
+                resultDiv.innerHTML = "Location not found. Try again.";
+            } else {
+                const temperature = data.current.temp_c;
+                resultDiv.innerHTML = `Temperature in ${location}: ${temperature}&#8451;`;
+            }
+        } catch (error) {
+            resultDiv.innerHTML = "Error fetching weather data. Please try again later.";
+        }
+    }
+</script>
 </html>
